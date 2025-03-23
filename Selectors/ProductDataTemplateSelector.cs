@@ -12,7 +12,11 @@ namespace MAUI_CollectionView.Selectors
                 Application.Current.Resources.TryGetValue("ProductStyle", out var productStyle);
                 return productStyle as DataTemplate;
             }
-            return new DataTemplate();
+            else
+            {
+                Application.Current.Resources.TryGetValue("ProductOfferStyle", out var offerStyle);
+                return offerStyle as DataTemplate;
+            }
         }
     }
 }

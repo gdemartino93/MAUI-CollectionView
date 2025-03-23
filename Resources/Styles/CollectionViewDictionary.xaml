@@ -25,6 +25,7 @@
                 Source="{Binding Image}" />
             <Label
                 Grid.Column="2"
+                FontAttributes="Bold"
                 FontSize="Large"
                 Text="{Binding Name}"
                 VerticalOptions="Center" />
@@ -34,6 +35,58 @@
                 FontSize="Large"
                 Text="{Binding Price, StringFormat='€{0}'}"
                 VerticalOptions="Center" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="ProductOfferStyle">
+        <Grid
+            Margin="15,10,15,0"
+            ColumnDefinitions=".1*,.2*,.7*"
+            RowDefinitions="*,*">
+            <Frame
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BorderColor="White">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Offset="0" Color="#C5E8B7" />
+                        <GradientStop Offset="1" Color="#83D475" />
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <Image
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                HeightRequest="100"
+                Source="{Binding Image}" />
+            <Label
+                Grid.Column="2"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="{Binding Name}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                FontSize="Large"
+                VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Prezzo scontato" />
+                        <Span Text="&#10;" />
+                        <Span
+                            FontAttributes="Bold"
+                            Text="{Binding OfferPrice, StringFormat='€{0}'}"
+                            TextColor="Green" />
+                        <Span Text="&#10;" />
+                        <Span
+                            FontSize="18"
+                            Text="{Binding Price, StringFormat='€{0}'}"
+                            TextColor="Red"
+                            TextDecorations="Strikethrough" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>
