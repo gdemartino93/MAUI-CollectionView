@@ -9,5 +9,7 @@
     <ContentPage.Resources>
         <DataTemplates:ProductDataTemplateSelector x:Key="ProductTemplate" />
     </ContentPage.Resources>
-    <CollectionView ItemTemplate="{StaticResource ProductTemplate}" ItemsSource="{Binding Products}" />
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView ItemTemplate="{StaticResource ProductTemplate}" ItemsSource="{Binding Products}" />
+    </RefreshView>
 </ContentPage>

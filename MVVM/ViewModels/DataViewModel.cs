@@ -1,18 +1,34 @@
 ﻿using MAUI_CollectionView.MVVM.Models;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MAUI_CollectionView.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class DataViewModel
     {
         public ObservableCollection<Product> Products { get; set; }
+        public bool IsRefreshing { get; set; }
+        public ICommand RefreshCommand => new Command(() =>
+        {
+            GetProducts();
+        });
+
         public DataViewModel()
         {
+            GetProducts();
+        }
+
+        private void GetProducts()
+        {
+            IsRefreshing = true;
+            Task.Delay(3000);
             Products = new ObservableCollection<Product>
                {
                     new Product
@@ -426,6 +442,7 @@ namespace MAUI_CollectionView.MVVM.ViewModels
                          Stock = 9
                      },
                };
+            IsRefreshing = false;
         }
     }
 }
