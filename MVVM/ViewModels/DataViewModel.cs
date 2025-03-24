@@ -23,7 +23,10 @@ namespace MAUI_CollectionView.MVVM.ViewModels
         {
             GetProducts(Products.Count);
         });
-
+        public ICommand DeleteCommand => new Command((p) =>
+        {
+            Products.Remove((Product)p);
+        });
         public DataViewModel()
         {
             GetProducts();
