@@ -13,11 +13,15 @@ namespace MAUI_CollectionView.MVVM.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class DataViewModel
     {
-        public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
         public bool IsRefreshing { get; set; }
         public ICommand RefreshCommand => new Command(() =>
         {
             GetProducts();
+        });
+        public ICommand ThresholdReachedCommand => new Command(async () =>
+        {
+            GetProducts(Products.Count);
         });
 
         public DataViewModel()
@@ -25,11 +29,12 @@ namespace MAUI_CollectionView.MVVM.ViewModels
             GetProducts();
         }
 
-        private void GetProducts()
+        private void GetProducts(int lastIndex = 0)
         {
             IsRefreshing = true;
             Task.Delay(3000);
-            Products = new ObservableCollection<Product>
+            int numberOfItemsPerPage = 10;
+            var products = new ObservableCollection<Product>
                {
                     new Product
                      {
@@ -442,6 +447,14 @@ namespace MAUI_CollectionView.MVVM.ViewModels
                          Stock = 9
                      },
                };
+
+            var items = products.Skip(lastIndex)
+                    .Take(numberOfItemsPerPage);
+
+            foreach (var product in items)
+            {
+                Products.Add(product);
+            }
             IsRefreshing = false;
         }
     }

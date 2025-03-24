@@ -10,6 +10,10 @@
         <DataTemplates:ProductDataTemplateSelector x:Key="ProductTemplate" />
     </ContentPage.Resources>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <CollectionView ItemTemplate="{StaticResource ProductTemplate}" ItemsSource="{Binding Products}" />
+        <CollectionView
+            ItemTemplate="{StaticResource ProductTemplate}"
+            ItemsSource="{Binding Products}"
+            RemainingItemsThreshold="1"
+            RemainingItemsThresholdReachedCommand="{Binding ThresholdReachedCommand}" />
     </RefreshView>
 </ContentPage>
