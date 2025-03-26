@@ -22,6 +22,7 @@ namespace MAUI_CollectionView.MVVM.ViewModels
             get { return selectedProduct; }
             set { selectedProduct = value; }
         }
+        public List<object> SelectedProducts { get; set; } = new List<object>();
         public bool IsRefreshing { get; set; }
 
         #region Commands
@@ -40,6 +41,11 @@ namespace MAUI_CollectionView.MVVM.ViewModels
         public ICommand ProductChangedCommand => new Command((item) =>
         {
             SelectedProduct.Name = "prova";
+        });
+
+        public ICommand ProductsChangedCommand => new Command(() =>
+        {
+            var products = SelectedProducts;
         });
         #endregion
         public DataViewModel()
