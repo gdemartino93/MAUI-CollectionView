@@ -4,7 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="LayoutsView">
-    <CollectionView ItemsSource="{Binding Products}">
+    <CollectionView
+        ItemsSource="{Binding Products}"
+        SelectedItem="{Binding SelectedProduct}"
+        SelectionChangedCommand="{Binding ProductChangedCommand}"
+        SelectionMode="Single">
         <CollectionView.Header>
             <Frame BackgroundColor="Yellow">
                 <Label
@@ -19,7 +23,7 @@
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame>
+                <Frame Margin="20" InputTransparent="True">
                     <VerticalStackLayout>
                         <Image Source="{Binding Image}" />
                         <Label

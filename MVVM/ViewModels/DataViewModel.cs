@@ -13,8 +13,18 @@ namespace MAUI_CollectionView.MVVM.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class DataViewModel
     {
+        private Product selectedProduct;
+        private ICommand productChangedCommand;
+
         public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
+        public Product SelectedProduct
+        {
+            get { return selectedProduct; }
+            set { selectedProduct = value; }
+        }
         public bool IsRefreshing { get; set; }
+
+        #region Commands
         public ICommand RefreshCommand => new Command(() =>
         {
             GetProducts();
@@ -27,6 +37,11 @@ namespace MAUI_CollectionView.MVVM.ViewModels
         {
             Products.Remove((Product)p);
         });
+        public ICommand ProductChangedCommand => new Command((item) =>
+        {
+            SelectedProduct.Name = "prova";
+        });
+        #endregion
         public DataViewModel()
         {
             GetProducts();
