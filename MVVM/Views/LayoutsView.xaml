@@ -4,9 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="LayoutsView">
-    <CollectionView ItemsSource="{Binding Products}">
+    <CollectionView Footer="Fine lista" ItemsSource="{Binding Products}">
+        <CollectionView.Header>
+            <Frame BackgroundColor="Yellow">
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Prodotti"
+                    VerticalTextAlignment="Center" />
+            </Frame>
+        </CollectionView.Header>
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="3" />
+            <LinearItemsLayout Orientation="Vertical" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
@@ -21,5 +30,17 @@
                 </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
+        <CollectionView.Footer>
+            <HorizontalStackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Create da:" TextColor="Yellow" />
+                            <Span Text="Nessuno" TextColor="Red" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+        </CollectionView.Footer>
     </CollectionView>
 </ContentPage>
