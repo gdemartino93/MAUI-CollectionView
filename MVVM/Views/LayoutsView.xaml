@@ -6,14 +6,11 @@
     Title="LayoutsView">
     <CollectionView ItemsSource="{Binding Products}">
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Horizontal" />
+            <GridItemsLayout Orientation="Vertical" Span="3" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame
-                    Margin="50"
-                    MaximumHeightRequest="500"
-                    WidthRequest="250">
+                <Frame>
                     <VerticalStackLayout>
                         <Image Source="{Binding Image}" />
                         <Label
