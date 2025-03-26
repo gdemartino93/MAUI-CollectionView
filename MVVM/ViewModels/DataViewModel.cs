@@ -51,8 +51,13 @@ namespace MAUI_CollectionView.MVVM.ViewModels
         public DataViewModel()
         {
             GetProducts();
+            PreselectFirstElement();
         }
 
+        private void PreselectFirstElement()
+        {
+            SelectedProducts.Add(Products.FirstOrDefault());
+        }
         private void GetProducts(int lastIndex = 0)
         {
             IsRefreshing = true;
