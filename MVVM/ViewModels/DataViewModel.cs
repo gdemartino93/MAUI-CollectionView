@@ -50,7 +50,7 @@ namespace MAUI_CollectionView.MVVM.ViewModels
         #endregion
         public DataViewModel()
         {
-            GetProducts();
+            //GetProducts();
             PreselectFirstElement();
         }
 
