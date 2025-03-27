@@ -8,7 +8,7 @@ namespace MAUI_CollectionView
         {
             InitializeComponent();
 
-            MainPage = new LayoutsView();
+            MainPage = new ProductsView();
         }
     }
 }
