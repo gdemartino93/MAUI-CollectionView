@@ -10,7 +10,7 @@
         <CollectionView
             x:Name="collectionview"
             Grid.Row="1"
-            IsGrouped="False"
+            IsGrouped="True"
             ItemsSource="{Binding Products}"
             ItemsUpdatingScrollMode="KeepLastItemInView"
             Scrolled="CollectionView_Scrolled">
@@ -26,7 +26,10 @@
                 </DataTemplate>
             </CollectionView.GroupFooterTemplate>
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+                <LinearItemsLayout
+                    ItemSpacing="20"
+                    Orientation="Vertical"
+                    SnapPointsType="MandatorySingle" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
