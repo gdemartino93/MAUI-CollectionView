@@ -19,8 +19,20 @@ namespace MAUI_CollectionView.MVVM.ViewModels
                 .GroupBy(x => x.Name[0])
                 .Select(groups => new ProductsGroup(groups.Key.ToString(), groups.ToList()));
             Products = grouped.ToList();
+            AssignIds(Products);
         }
 
+        private static void AssignIds(List<ProductsGroup> productGroups)
+        {
+            int id = 0;
+            foreach (var group in productGroups)
+            {
+                foreach (var el in group)
+                {
+                    el.Id = id++;
+                }
+            }
+        }
         private List<Product> GetProducts()
         {
             return new List<Product>

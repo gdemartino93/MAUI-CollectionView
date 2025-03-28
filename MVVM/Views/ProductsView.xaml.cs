@@ -21,4 +21,16 @@ public partial class ProductsView : ContentPage
         Debug.WriteLine($"offset vertical: {e.VerticalOffset}");
         Debug.WriteLine($"offset orizzontale: {e.VerticalOffset}");
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        var vm = BindingContext as ProductsViewModel;
+        if ( vm != null )
+        {
+            var product = vm.Products
+                .SelectMany(p => p)
+                .FirstOrDefault(x => x.Id == 10);
+            collectionview.ScrollTo(product, null, ScrollToPosition.Start, true);
+        }
+    }
 }
