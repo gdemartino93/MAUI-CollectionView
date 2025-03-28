@@ -5,12 +5,22 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MAUI_CollectionView.MVVM.ViewModels
 {
     public class ProductsViewModel
     {
-        public List<ProductsGroup> Products { get; set; } = new();
+        public ICommand AddProductCommand => new Command(() =>
+        {
+            Products.Add(
+            new ProductsGroup("Nuova categoria", new List<Product>
+            {
+                new Product { Id = 50, Name = "Prodotto nuovo" }
+            })
+);
+        });
+        public ObservableCollection<ProductsGroup> Products { get; set; } = new();
         public ProductsViewModel()
         {
             var products = GetProducts();
@@ -18,11 +28,11 @@ namespace MAUI_CollectionView.MVVM.ViewModels
                 OrderBy(p => p.Name)
                 .GroupBy(x => x.Name[0])
                 .Select(groups => new ProductsGroup(groups.Key.ToString(), groups.ToList()));
-            Products = grouped.ToList();
+            Products = new ObservableCollection<ProductsGroup>(grouped.ToList());
             AssignIds(Products);
         }
 
-        private static void AssignIds(List<ProductsGroup> productGroups)
+        private static void AssignIds(ObservableCollection<ProductsGroup> productGroups)
         {
             int id = 0;
             foreach (var group in productGroups)

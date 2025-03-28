@@ -6,11 +6,13 @@
     Title="ProductsView">
     <Grid RowDefinitions=".1*,.9*">
         <Button Clicked="Button_Clicked" Text="Vai al prodotto" />
+        <Button Command="{Binding AddProductCommand}" Text="Aggiungi prodotto" />
         <CollectionView
             x:Name="collectionview"
             Grid.Row="1"
-            IsGrouped="true"
+            IsGrouped="False"
             ItemsSource="{Binding Products}"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
             Scrolled="CollectionView_Scrolled">
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate>
